@@ -43,78 +43,77 @@
 		}
     }
 </script>
-<main class="card">
-    <h1>SvelteChat</h1>
+<div class="center-stage">
+    <main>
+        <h1>SvelteChat</h1>
 
-    <div class="stack">
-        <div class="field">
-            <input bind:value={create_room_name} placeholder="New room..." />
-            <button class="dark" on:click={create_new_room}>Create</button>
+        <div class="inputs">
+            <div class="row">
+                <input bind:value={create_room_name} placeholder="New room..." />
+                <button on:click={create_new_room} class="primary">Create</button>
+            </div>
+            <div class="row">
+                <input bind:value={join_room_id} placeholder="Room ID..." />
+                <button on:click={join_existing_room}>Join</button>
+            </div>
         </div>
-        <div class="field">
-            <input bind:value={join_room_id} placeholder="Room ID..." />
-            <button on:click={join_existing_room}>Join</button>
-        </div>
-    </div>
 
-    <section class="list">
-        <header>
-            <h3>Live</h3>
-            <button class="small" on:click={fetch_active_rooms}>Refresh</button>
-        </header>
+        <section>
+            <header>
+                <b>Live Rooms</b>
+                <button class="text-btn" on:click={fetch_active_rooms}>Refresh</button>
+            </header>
 
-        {#each active_rooms as room}
-            <button class="item" on:click={() => check_and_join(room.id)}>
-                <span>#{room.id}</span>
-                <small>{room.users} online</small>
-            </button>
-        {:else}
-            <p class="empty">No active rooms.</p>
-        {/each}
-    </section>
-</main>
+            {#each active_rooms as room}
+                <button class="room-link" on:click={() => check_and_join(room.id)}>
+                    <span>#{room.id}</span>
+                    <small>{room.users} online</small>
+                </button>
+            {:else}
+                <p class="empty">No active rooms.</p>
+            {/each}
+        </section>
+    </main>
+</div>
 
 <style>
-    .card {
-        background: #fff;
-        padding: 2rem;
-        border-radius: 12px;
-        width: 360px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        
-        h1 { text-align: center; margin-top: 0; }
+    /* Center everything on screen */
+    .center-stage {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        font-family: system-ui, sans-serif;
     }
 
-    .stack { display: grid; gap: 12px; margin-bottom: 24px; }
+    main { width: 320px; }
 
-    .field { 
-        display: flex; gap: 8px; 
-        
-        input { 
-            flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 6px; 
-        }
-        
-        button { 
-            padding: 10px 16px; border-radius: 6px; border: 1px solid #ddd;
-            background: #fff; cursor: pointer; font-weight: 600;
-            &.dark { background: #000; color: #fff; border: none; }
-        }
+    h1 { text-align: center; margin-bottom: 2rem; }
+
+    /* Layout groups */
+    .inputs, section { display: grid; gap: 0.5rem; margin-bottom: 2rem; }
+    .row { display: flex; gap: 0.5rem; }
+
+    /* Minimal Elements */
+    input { 
+        flex: 1; padding: 8px; border: 1px solid #eee; border-radius: 4px; outline: none;
+    }
+    
+    button { 
+        padding: 8px 12px; border-radius: 4px; border: 1px solid #eee;
+        background: #fff; cursor: pointer; font-size: 0.9rem;
     }
 
-    .list {
-        border-top: 1px solid #eee; padding-top: 16px;
-        
-        header { display: flex; justify-content: space-between; align-items: center; }
-        
-        .small { border: none; background: none; color: #666; font-size: 0.8rem; cursor: pointer; }
+    .primary { background: #000; color: #fff; border: none; }
 
-        .item {
-            display: flex; justify-content: space-between; width: 100%;
-            padding: 12px; margin-top: 8px; border: 1px solid #f0f0f0;
-            border-radius: 6px; background: #fff; cursor: pointer;
-            &:hover { background: #f9f9f9; }
-        }
-        
-        .empty { text-align: center; color: #999; font-size: 0.9rem; }
+    /* List styling */
+    header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem; }
+    
+    .room-link {
+        display: flex; justify-content: space-between; align-items: center;
+        text-decoration: none; color: inherit; padding: 8px 0;
+        border: none; border-bottom: 1px solid #f5f5f5; width: 100%; text-align: left;
     }
+
+    .text-btn { border: none; padding: 0; color: #0066ff; background: none; font-size: 0.8rem; }
+    .empty { text-align: center; color: #999; font-size: 0.9rem; }
 </style>
