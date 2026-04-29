@@ -16,7 +16,6 @@
 </div>
 
 <style>
-    /* Clean font and layout */
     :global(body) {
         margin: 0;
         font-family: sans-serif;
@@ -32,7 +31,6 @@
         min-height: 100vh;
     }
 
-    /* Simple Nav: just space between links */
     nav {
         display: flex;
         justify-content: space-between;
@@ -44,12 +42,10 @@
         color: #000;
     }
 
-    /* Let the content fill the middle */
     main {
         flex: 1;
     }
 
-    /* Subtle footer */
     footer {
         margin-top: 3rem;
         opacity: 0.4;

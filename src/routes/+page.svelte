@@ -77,7 +77,6 @@
 </div>
 
 <style>
-    /* Center everything on screen */
     .center-stage {
         display: grid;
         place-items: center;
@@ -89,11 +88,9 @@
 
     h1 { text-align: center; margin-bottom: 2rem; }
 
-    /* Layout groups */
     .inputs, section { display: grid; gap: 0.5rem; margin-bottom: 2rem; }
     .row { display: flex; gap: 0.5rem; }
 
-    /* Minimal Elements */
     input { 
         flex: 1; padding: 8px; border: 1px solid #eee; border-radius: 4px; outline: none;
     }
@@ -105,7 +102,6 @@
 
     .primary { background: #000; color: #fff; border: none; }
 
-    /* List styling */
     header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem; }
     
     .room-link {
