@@ -22,7 +22,7 @@
         socket.on('chat_message', (msg, mroom_id) => {
 			if(room_id == mroom_id)
 			{
-				messages.push(msg);
+				messages.push(msg)
 			}
         });
 		
@@ -96,8 +96,8 @@
             h2 { margin: 0; font-size: 1.1rem; }
             .dot { height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; }
             .user { display: flex; gap: 8px; }
-            .name { border: none; background: #f4f4f5; padding: 4px 8px; border-radius: 4px; width: 100px; font-weight: 600; }
-            .color { border: none; background: none; width: 24px; height: 24px; cursor: pointer; padding: 0; }
+        	 .name { border: 1px solid #e4e4e7; background: #f4f4f5; padding: 8px 12px; border-radius: 6px; width: 180px; font-weight: 700; transition: all 0.2s; outline: none; }
+            .color { border: none; background: none; width: 32px; height: 32px; cursor: pointer; padding: 0; }
         }
 
         .feed {
