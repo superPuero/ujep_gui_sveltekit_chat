@@ -5,12 +5,11 @@
 
 	let room_id = page.params.room_id;
 
-    let socket;
-    let messages = [];
-    let current_message = '';
-    
-    let username = ''; 
-    let username_color = '#000000'; 
+	let socket;
+  	let messages = $state([]);
+    let current_message = $state('');
+    let username = $state(''); 
+    let username_color = $state('#000000');
 
     onMount(async () => {
         socket = io();
@@ -23,7 +22,7 @@
         socket.on('chat_message', (msg, mroom_id) => {
 			if(room_id == mroom_id)
 			{
-				messages = [...messages, msg];
+				messages.push(msg);
 			}
         });
 		
@@ -70,14 +69,14 @@
         {/each}
     </div>
 
-    <footer>
-        <input 
-            bind:value={current_message} 
-            placeholder="Type a message..." 
-            on:keydown={e => e.key === 'Enter' && send_message()} 
-        />
-        <button on:click={send_message}>Send</button>
-    </footer>
+	<footer>
+		<input 
+			bind:value={current_message} 
+			placeholder="Type a message..." 
+			onkeydown={e => e.key === 'Enter' && send_message()} 
+		/>
+		<button onclick={send_message}>Send</button>
+	</footer>
 </main>
 
 <style>

@@ -4,7 +4,7 @@
     
     let create_room_name = '';
     let join_room_id = '';
-    let active_rooms = [];
+	let active_rooms = $state([]);
 
     async function fetch_active_rooms() {
 		const response = await fetch('/api/rooms');
